@@ -53,7 +53,7 @@ if ~post_gc
             ylabel('Predicted Illuminance (lux)')
             xlabel('Color')
         end
-        h = mean(Vout_sum(:))./Vout_sum;
+        h = min(Vout_sum(:))./Vout_sum;
         
         h_gamma = zeros(size(Vin));
         for chan = 1:3
@@ -107,7 +107,7 @@ else %if do post_gc (e.g. on BOLDscreen)
             ylabel('Predicted Illuminance (lux)')
             xlabel('Color')
         end
-        h = mean(Vout_sum(:))./Vout_sum;
+        h = min(Vout_sum(:))./Vout_sum;
         
         h_gamma = zeros(size(Vin));
         for chan = 1:3
