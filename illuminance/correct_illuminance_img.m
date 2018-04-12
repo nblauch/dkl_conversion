@@ -121,8 +121,6 @@ else %if do post_gc (e.g. on BOLDscreen)
             figure; imagesc(Vout_sum); colorbar; 
             if invert; set(gca,'YDir','normal'); end
             title('Pre-correction')
-            ylabel('Predicted Illuminance (lux)')
-            xlabel('Color')
         end
         
         if exist('illuminance_lx')
@@ -161,8 +159,6 @@ else %if do post_gc (e.g. on BOLDscreen)
             figure; imagesc(Vout_sum); colorbar; 
             if invert; set(gca,'YDir','normal'); end
             title('Post-correction')
-            ylabel('Predicted Illuminance (lux)')
-            xlabel('Color')
         end
         img_iso = uint8(img_iso);
     end
@@ -177,4 +173,5 @@ if plot_figs
     figure; imagesc(img_iso); 
     if invert; set(gca,'YDir','normal'); end
     title('Post-correction')
+    
 end

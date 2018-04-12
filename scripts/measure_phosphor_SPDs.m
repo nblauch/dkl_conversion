@@ -1,8 +1,12 @@
 
-% script to measure the phosphor SPDs of your monitor
-% requires spectrophotometer
-% after readings are taken, must compile into one 341x3 matrix and save as
-% ['phosphors-',monitor] where monitor is a string naming the monitor
+%{
+
+script to measure the phosphor SPDs of your monitor. requires spectrophotometer
+after readings are taken, must compile into one 341x3 matrix and save as
+['phosphors-',monitor] where monitor is a string naming the monitor
+phosphor values are for wavelength = 390:730 (nm) 
+
+%}
 
 screens=Screen('Screens');
 screenNumber=max(screens);

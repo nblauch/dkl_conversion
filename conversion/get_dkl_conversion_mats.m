@@ -18,7 +18,8 @@ function [ lms_bg, M, M_inv ] = get_dkl_conversion_mats(rgb_bg, monitor,lineariz
 %           i.e. diffcone_coords = M_inv*DKL_coords;
 %
 %   NOTES:
-%   this code is essentially copied from Brainard (1996), in Human Color Vision
+%   this code is essentially copied from Brainard (1996), in Human Color
+%   Vision. thanks dhb!
 %
 %   2/6/2018 nmb: Wrote it
 
