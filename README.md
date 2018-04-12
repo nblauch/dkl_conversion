@@ -1,6 +1,6 @@
 # dkl_conversion
 
-This is a collection of routines for utilizing the DKL color space, written by Nicholas Blauch in the Cowell and Huber Labs at UMass Amherst.
+This is a collection of routines for utilizing the DKL color space, written by Nicholas Blauch in the Cowell and Huber Labs at UMass Amherst. The raw RGB<-LMS->DKL pipeline was essentially copied from David Brainard's example script in Human Color Vision (1996). 
 
 A good starting point to understanding these routines is the file dkl_example.m . 
 This file demonstrates the production of an isoluminant plane and optional gamma-based (il)luminance-correction.
