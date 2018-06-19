@@ -25,10 +25,6 @@ function rgb_dkl = get_n_dkl_colors(n_colors,phase,frac_radius,monitor,backgroun
 
 n_steps = 120;
 
-if linearize
-    load(['gammaTable-',monitor,'-rgb'])
-end
-
 load(['phosphors-',monitor])
 load('SMJfundamentals')
 
@@ -57,7 +53,9 @@ end
 rgb_dkl = rgb_dkl./255;
 
 if linearize
+    load(['gammaTable-',monitor,'-rgb'])
     rgb_dkl = linearize_image(rgb_dkl,gammaTable);
+    load(['gammaTable-',monitor])
     grey_bg = linearize_image(grey_bg,gammaTable);
 end
 

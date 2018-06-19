@@ -17,11 +17,17 @@ function rgb_dkl_isolum = correct_illuminance(rgb_dkl_orig,monitor,post_gc,plot_
 %
 %   notes:
 %   2/20/18 nmb wrote it
+%   5/18: nmb: n_iters set to 1 if check_spline_model=0. this is only for
+%   clarity, and does not change the results.
 
 load(['gammaFit-',monitor])
 
 check_spline_model = 0; % could set to 1 if you trust the spline model over the gamma model
-n_iters = 4;
+if check_spline_model
+    n_iters = 4; 
+else
+    n_iters = 1; %all the correction takes place in first iteration due to the application of an analytical solution
+end
 
 if ~post_gc
     for iter = 1:n_iters

@@ -30,27 +30,15 @@ function [isolum_plane, inc_dkl_lm_chrom,inc_dkl_s_chrom, dkl_origin] = find_max
 
 %% load relevant information and set background
 
-load(['gammaTable-',monitor,'-rgb'])
 load('SMJfundamentals')
 load(['phosphors-',monitor])
 
 rgb_bg = repmat(background_grey,[1,3]);
 rgb_grey_stim = repmat(stim_grey,[1,3]);
 
-rgb_bg_gc = linearizeOutput(repmat(background_grey,[1,3]),gammaTable);
-rgb_grey_stim_gc = linearizeOutput(repmat(stim_grey,[1,3]),gammaTable);
-
 %% acquire conversion matrices and gray_stim DKL coords
 [lms_bg, M, M_inv] = get_dkl_conversion_mats(rgb_bg, monitor,linearize); 
-
-% if linearize
-%     lms_grey_stim = rgb2lms(phosphors,fundamentals,rgb_grey_stim_gc); 
-% else
-%     lms_grey_stim = rgb2lms(phosphors,fundamentals,rgb_grey_stim);
-% end
-
 lms_grey_stim = rgb2lms(phosphors,fundamentals,rgb_grey_stim);
-
 dkl_origin = M*(lms_grey_stim - lms_bg); %is all zeros if stim_grey == background_grey
 
 %% find maximum coordinates along the positive dkl_lm_chrom axis
@@ -165,6 +153,7 @@ end
 isolum_plane = uint8(isolum_plane);
 
 if linearize
+    load(['gammaTable-',monitor,'-rgb'])
     isolum_plane = linearize_image(isolum_plane,gammaTable);
 end
 

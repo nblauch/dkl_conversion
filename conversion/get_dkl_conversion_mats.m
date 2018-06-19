@@ -23,11 +23,11 @@ function [ lms_bg, M, M_inv ] = get_dkl_conversion_mats(rgb_bg, monitor,lineariz
 %
 %   2/6/2018 nmb: Wrote it
 
-load(['gammaTable-',monitor,'-rgb'])
 load('SMJfundamentals')
 load(['phosphors-',monitor])
 
 if linearize
+    load(['gammaTable-',monitor,'-rgb'])
     rgb_bg = linearizeOutput(rgb_bg,gammaTable);
 end
 

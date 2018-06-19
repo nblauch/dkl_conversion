@@ -22,6 +22,3 @@ end
 % Compute lms from rgb.
 rgbTOlms = fundamentals'*phosphors; 
 lms      = rgbTOlms * rgb;
-% ===================================================
-% *** END FUNCTION rgb2lms
-% ===================================================

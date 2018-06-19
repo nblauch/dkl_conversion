@@ -44,16 +44,27 @@ dkl_plane_gc_iso = correct_illuminance_img(dkl_plane_gc,monitor,0,1,1);
 %% get an isoluminant set of colors
 n_colors = 12;
 monitor = 'cemnl';
-bg_grey = 128;
-stim_grey = bg_grey;
+dkl_intensity = 128;
+bg_intensity = dkl_intensity; %not guaranteed to converge if bg_intensity != dkl_intensity
 linearize = 0;
 
 %not yet isoluminant...
-rgb_dkl = get_n_dkl_colors(n_colors,0,1,monitor,bg_grey,stim_grey,linearize,0,1);
+rgb_dkl = get_n_dkl_colors(n_colors,0,1,monitor,bg_intensity,dkl_intensity,linearize,0,1);
 
 %do gamma-based illuminance correction
 rgb_dkl_iso = correct_illuminance(rgb_dkl,monitor,0,1);
-plot_n_dkl_colors(rgb_dkl_iso,0,bg_grey)
+plot_n_dkl_colors(rgb_dkl_iso,0,bg_intensity)
+
+% compare what was just produced with a gamma-corrected "isoluminant" set
+rgb_dkl_gc = get_n_dkl_colors(n_colors,0,1,monitor,50,50,1,0,1);
+rgb_dkl_gc = get_n_dkl_colors(n_colors,0,1,monitor,128,128,1,0,1);
+
+
+% and see that even gamma-corrected is not fully isoluminant (though much
+% closer)
+rgb_dkl_gc_iso = correct_illuminance(rgb_dkl_gc,monitor,0,1);
+plot_n_dkl_colors(rgb_dkl_gc_iso,0,128)
 
 %% run check_illuminance with a light meter to check for iso-(il)luminance
-lx_readings = check_illuminance(rgb_dkl_iso,1);
+% lx_readings = check_illuminance(rgb_dkl_iso,1);
+

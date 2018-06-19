@@ -1,6 +1,5 @@
 
 function [rgb] = lms2rgb(phosphors,fundamentals,lms)
-% ================================================================
 %  rgb = lms2rgb(phosphors,fundamentals,lms)
 % 
 %  computes rgb from lms.

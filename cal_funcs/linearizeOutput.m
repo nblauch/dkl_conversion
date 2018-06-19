@@ -5,6 +5,10 @@ function RGB = linearizeOutput(RGB,gammaTable)
 %gammaTable may also be a 256x3 lookup table for gamma correction of
 %individual phosphors for accurate color space 
 
+if ndims(RGB)~=2 || size(RGB,2)~=3
+    error('Input must be size Mx3. For an image, use linearize_image');
+end
+
 double = 0;
 if max(RGB)<=1
     double = 1;
