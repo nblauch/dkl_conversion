@@ -19,6 +19,8 @@ function rgb_dkl_isolum = correct_illuminance(rgb_dkl_orig,monitor,post_gc,plot_
 %   2/20/18 nmb wrote it
 %   5/18: nmb: n_iters set to 1 if check_spline_model=0. this is only for
 %   clarity, and does not change the results.
+%   6/20: nmb: MAKE NOTE: HMRC no longer performs in-house gamma
+%   correction. set post_gc=0. added some commenting for clarity. 
 
 load(['gammaFit-',monitor])
 
@@ -59,14 +61,17 @@ if ~post_gc
             ylabel('Predicted Illuminance (lux)')
             xlabel('Color')
         end
-        h = min(Vout_sum(:))./Vout_sum;
         
+        h = min(Vout_sum(:))./Vout_sum; %scalar scaling factor
+        %scaling factor must be taken to the 1/gamma for proper correction
+        %since we computed a per-phosphor gamma model, we correct with it
         h_gamma = zeros(size(Vin));
         for chan = 1:3
-            h_gamma(:,chan) = h.^(1/displayGamma(chan));
+            h_gamma(:,chan) = h.^(1/displayGamma(chan)); %channel-specific scaling factors
         end
-        rgb_dkl_isolum = (rgb_dkl).*(h_gamma);
+        rgb_dkl_isolum = (rgb_dkl).*(h_gamma); %apply correction
         
+        %now determine Vout for corrected colors
         if check_spline_model
             Vin = 255.*rgb_dkl_isolum;
             Vout = zeros(size(Vin));

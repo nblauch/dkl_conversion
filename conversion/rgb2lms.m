@@ -21,4 +21,4 @@ end
 
 % Compute lms from rgb.
 rgbTOlms = fundamentals'*phosphors; 
-lms      = rgbTOlms * rgb;
+lms      = rgbTOlms * double(rgb);

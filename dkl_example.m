@@ -35,7 +35,10 @@ post_gamma_correction = 0;
 dkl_plane_iso = correct_illuminance_img(dkl_plane,monitor,post_gamma_correction,1,1);
 
 % compare what was just produced with a gamma-corrected isoluminant plane
-dkl_plane_gc= find_max_dkl_disc(monitor,50, 50, 1, resolution_steps,1,1,'disc');
+load(['cal_tables/gammaTable-',monitor,'-rgb'])
+LUT = linearize_image(1:255,mean(gammaTable,2));
+stim_intensity_gc = find(LUT == stim_intensity); 
+dkl_plane_gc= find_max_dkl_disc(monitor,stim_intensity_gc, stim_intensity_gc, 1, resolution_steps,1,1,'disc');
 
 % and see that even gamma-corrected is not fully isoluminant (though much
 % closer)
