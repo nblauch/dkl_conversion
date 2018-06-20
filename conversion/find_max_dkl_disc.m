@@ -42,7 +42,7 @@ lms_grey_stim = rgb2lms(phosphors,fundamentals,rgb_grey_stim);
 dkl_origin = M*(lms_grey_stim - lms_bg); %is all zeros if stim_grey == background_grey
 
 %% find maximum coordinates along the positive dkl_lm_chrom axis
-nudge = .01;
+nudge = .001;
 while 1
     try        
         fun = @(x)dkl_min_fun(x, dkl_origin(2), dkl_origin(3), lms_bg, M_inv, phosphors, fundamentals);
@@ -66,7 +66,7 @@ while 1
 end
 
 %% find maximum coordinates along the positive dkl_s_chrom axis
-nudge = .01;
+nudge = .001;
 while 1
     try
         fun = @(x)dkl_min_fun(dkl_origin(1), x, dkl_origin(3), lms_bg, M_inv, phosphors, fundamentals);
@@ -161,7 +161,7 @@ if plot
     figure
     imshow(isolum_plane)
     set(gca,'YDir','normal')
-    title(['Isoluminant DKL disc: bg intensity-',num2str(stim_grey),'stim intensity-',num2str(background_grey)])
+    title(['Isoluminant DKL disc: bg intensity-',num2str(background_grey),'stim intensity-',num2str(stim_grey)])
 end
 
 

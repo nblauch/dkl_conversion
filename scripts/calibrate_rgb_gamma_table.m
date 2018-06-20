@@ -1,7 +1,12 @@
 
 %% measure intensity values for some number of measurements for each phosphor individually
 
+<<<<<<< HEAD:scripts/calibrate_rgb_gamma_table.m
 monitor = 'cemnl';
+=======
+monitor = 'hmrc';
+
+>>>>>>> parent of e7b48df... Revert "Merge branch 'master' of https://github.com/nblauch/dkl_conversion":calibrate_rgb_gamma_table.m
 
 screens=Screen('Screens');
 screenNumber=max(screens);
@@ -42,7 +47,7 @@ for channel = 1:3
     %Gamma function fitting
     fo = fitoptions('a*(x^g)','Lower',[0,1],'Upper',[400,3]);
     g = fittype('a*(x^g)','options',fo);
-    fittedmodel = fit(intensity_vals',chan_vals(channel,:)',g);
+    fittedmodel = fit(intensity_vals',chan_vals',g);
     displayGamma(channel) = fittedmodel.g;
     displayConstant(channel) = fittedmodel.a;
     gammaTable(:,channel) = ((([0:255]'/255))).^(1/fittedmodel.g); %#ok<NBRAK>
@@ -50,11 +55,11 @@ for channel = 1:3
     firstFit = fittedmodel([0:255]/255); %#ok<NBRAK>
     
     %Spline interp fitting
-    fittedmodel = fit(intensity_vals',chan_vals(channel,:)','splineinterp');
+    fittedmodel = fit(intensity_vals',chan_vals','splineinterp');
     displaySplineModel(:,channel) = fittedmodel([0:255]/255); %#ok<NBRAK>
     
     figure;
-    plot(255*intensity_vals', chan_vals(channel,:)', '.', [0:255], firstFit, '--', [0:255], displaySplineModel(:,channel), '-.'); %#ok<NBRAK>
+    plot(255*intensity_vals', chan_vals', '.', [0:255], firstFit, '--', [0:255], displaySplineModel(:,channel), '-.'); %#ok<NBRAK>
     legend('Measures', 'Gamma model', 'Spline interpolation');
     title(sprintf('Gamma model x^{%.2f} vs. Spline interpolation', displayGamma(channel)));
     
@@ -62,5 +67,5 @@ end
 
 %% save the models if you wish
 save(['gammaTable-',monitor,'-rgb'],'gammaTable')
-save(['gammaFit-',monitor],'displayGamma','displayConstant')
+save(['gammaFit-',monitor],'displayGamma','displayConstant','readings','intensity_vals')
 

@@ -32,8 +32,11 @@ load('SMJfundamentals')
 color_angles = linspace(0,360-(360/n_colors),n_colors);
 color_angles = color_angles + phase;
 
-%find the DKL disc
-[~, inc_dkl_lm_chrom,inc_dkl_s_chrom, dkl_origin] = find_max_dkl_disc(monitor,background_grey, stim_grey, 0, n_steps, plot_disc,1,'disc');
+%find the DKL disc - don't linearize. will do later.
+[~, inc_dkl_lm_chrom,inc_dkl_s_chrom, dkl_origin] = find_max_dkl_disc(monitor,background_grey, stim_grey, 0, n_steps, 0,1,'disc');
+
+%plot if desired
+[~, ~,~, ~] = find_max_dkl_disc(monitor,background_grey, stim_grey, linearize, n_steps, plot_disc,1,'disc');
 
 %get DKL<->cone differential conversion matrices
 [lms_bg, M, M_inv ] = get_dkl_conversion_mats(repmat(background_grey,[1,3]), monitor,0);

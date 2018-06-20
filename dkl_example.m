@@ -15,13 +15,13 @@ set(0,'DefaultFigureWindowStyle','docked')
 
 %set params
 %choose monitor for which there are corresponding calibration files
-monitor = 'cemnl'; 
+monitor = 'hmrc'; 
 dkl_intensity = 128;
 bg_intensity = dkl_intensity; %not guaranteed to converge if bg_intensity != dkl_intensity
 linearize = 0; %perform gamma correction later
 resolution_steps = 120; %larger for higher resolution
 
-dkl_plane = find_max_dkl_disc('cemnl',dkl_intensity, bg_intensity, linearize, resolution_steps,1,1,'disc');
+dkl_plane = find_max_dkl_disc(monitor,dkl_intensity, bg_intensity, linearize, resolution_steps,1,1,'disc');
 
 %{
 the disc just plotted is not actually isoluminant. gamma correction will
@@ -35,7 +35,7 @@ post_gamma_correction = 0;
 dkl_plane_iso = correct_illuminance_img(dkl_plane,monitor,post_gamma_correction,1,1);
 
 % compare what was just produced with a gamma-corrected isoluminant plane
-dkl_plane_gc= find_max_dkl_disc('cemnl',50, 50, 1, resolution_steps,1,1,'disc');
+dkl_plane_gc= find_max_dkl_disc(monitor,50, 50, 1, resolution_steps,1,1,'disc');
 
 % and see that even gamma-corrected is not fully isoluminant (though much
 % closer)
@@ -43,7 +43,6 @@ dkl_plane_gc_iso = correct_illuminance_img(dkl_plane_gc,monitor,0,1,1);
 
 %% get an isoluminant set of colors
 n_colors = 12;
-monitor = 'cemnl';
 dkl_intensity = 128;
 bg_intensity = dkl_intensity; %not guaranteed to converge if bg_intensity != dkl_intensity
 linearize = 0;
