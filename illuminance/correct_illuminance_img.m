@@ -62,8 +62,6 @@ if ~post_gc
             figure; imagesc(Vout_sum); colorbar; 
             if invert; set(gca,'YDir','normal'); end
             title('Pre-correction')
-            ylabel('Predicted Illuminance (lux)')
-            xlabel('Color')
         end
         
         if exist('illuminance_lx')
@@ -102,8 +100,6 @@ if ~post_gc
             figure; imagesc(Vout_sum); colorbar; 
             if invert; set(gca,'YDir','normal'); end
             title('Post-correction')
-            ylabel('Predicted Illuminance (lux)')
-            xlabel('Color')
         end
         img_iso = uint8(img_iso);
     end

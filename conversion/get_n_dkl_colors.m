@@ -58,7 +58,11 @@ rgb_dkl = rgb_dkl./255;
 if linearize
     load(['gammaTable-',monitor,'-rgb'])
     rgb_dkl = linearize_image(rgb_dkl,gammaTable);
-    load(['gammaTable-',monitor])
+    try
+        load(['gammaTable-',monitor])
+    catch
+        gammaTable = mean(gammaTable,2); %if grayscale gammaTable doesn't exist, take mean across r,g,b channels
+    end
     grey_bg = linearize_image(grey_bg,gammaTable);
 end
 

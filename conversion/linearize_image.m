@@ -8,10 +8,6 @@ function img_gc = linearize_image(img,gammaTable)
 %NOTES
 %    4/19/18 nmb: edited to properly deal with input of dim 1,2,3
 
-% if ndims(img)~=3 || size(img,3)~=3
-%     error('Input must be an image of size MxNx3. For a vector, use linearizeOutput');
-% end
-
 double = 0;
 if max(img(:))<=1
     double = 1;

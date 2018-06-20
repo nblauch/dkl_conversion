@@ -1,12 +1,7 @@
 
 %% measure intensity values for some number of measurements for each phosphor individually
 
-<<<<<<< HEAD:scripts/calibrate_rgb_gamma_table.m
-monitor = 'cemnl';
-=======
 monitor = 'hmrc';
-
->>>>>>> parent of e7b48df... Revert "Merge branch 'master' of https://github.com/nblauch/dkl_conversion":calibrate_rgb_gamma_table.m
 
 screens=Screen('Screens');
 screenNumber=max(screens);

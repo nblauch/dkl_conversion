@@ -28,7 +28,7 @@ load(['phosphors-',monitor])
 
 if linearize
     load(['gammaTable-',monitor,'-rgb'])
-    rgb_bg = linearizeOutput(rgb_bg,gammaTable);
+    rgb_bg = linearize_image(rgb_bg,gammaTable);
 end
 
 lms_bg = rgb2lms(phosphors,fundamentals,rgb_bg);
