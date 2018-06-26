@@ -9,7 +9,7 @@ dkl_conversion_dir = fileparts(which('dkl_example'));
 load([dkl_conversion_dir,'/cal_tables/hmrc-factory-8bitInvGammaLUT.mat'])
 %save it in our terminology for future use
 gammaTable = InvGammaTable;
-save([dkl_conversion_dir,'/cal_tables/gammaTable-hmrc-factory.mat'],'gammaTable')
+save([dkl_conversion_dir,'/cal_tables/gammaTable-hmrc-factory-rgb.mat'],'gammaTable')
 %copy phosphors for use with 'hmrc-factory' monitor
 copyfile([dkl_conversion_dir,'/cal_tables/phosphors-hmrc.mat'],[dkl_conversion_dir,'/cal_tables/phosphors-hmrc-factory.mat'])
 
